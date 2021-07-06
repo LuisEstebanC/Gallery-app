@@ -27,18 +27,19 @@ const Cards = () => {
 
   imagesCombos = [...imagesCombos.filter((combo) => combo.length !== 0)];
 
-  const options = [
-    { value: 10, label: "10" },
-    { value: 20, label: "20" },
-  ];
+  // const options = [
+  //   { value: 10, label: "10" },
+  //   { value: 20, label: "20" },
+  //   { value: 120, label: "All images" },
+  // ];
 
-  const customStyles = {
-    borderRadius: "4px",
-    colors: {
-      primary25: "#b8b1bb",
-      primary: "#C022F5",
-    },
-  };
+  // const customStyles = {
+  //   borderRadius: "4px",
+  //   colors: {
+  //     primary25: "#b8b1bb",
+  //     primary: "#C022F5",
+  //   },
+  // };
 
   return (
     <div className="text-Center">
@@ -47,14 +48,14 @@ const Cards = () => {
           <div className="row">
             <div className="col-xl-6 col-sm-9 col-12"></div>
             <div className="col-xl-6 col-sm-3 col-12">
-              <div className="selectD">
+              {/* <div className="selectD">
                 <Select
                   className="selectD"
                   options={options}
                   onChange={selectChange}
                   theme={customStyles}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

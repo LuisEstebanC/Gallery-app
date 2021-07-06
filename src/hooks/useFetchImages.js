@@ -1,10 +1,9 @@
 import { useEffect, useState, useCallback, useContext } from "react";
-import { InputContext } from "../contexts/InputContext";
+import { InputContext, SelectContext } from "../contexts/NavOptionsContext";
 export const useFetchImages = () => {
   const [images, setImages] = useState([]);
   const { input, setInput } = useContext(InputContext);
-
-  const [perPage, setPerPage] = useState(120);
+  const { perPage, setPerPage } = useContext(SelectContext);
 
   const [loading, setLoading] = useState(true);
 
@@ -59,10 +58,10 @@ export const useFetchImages = () => {
 
   //   setInput(text);
   // };
-  const selectChange = (e) => {
-    const number = e.value;
-    setPerPage(number);
-  };
+  // const selectChange = (e) => {
+  //   const number = e.value;
+  //   setPerPage(number);
+  // };
 
-  return [images, loading, selectChange, setInput];
+  return [images, loading, setInput];
 };

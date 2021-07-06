@@ -11,11 +11,18 @@ body {
 }
 
 .navbar {
-    background: #C022F5;
+    padding: 15px 4%;
+    background: #ffffff;
+}
+
+.navbar-brand {
+    font-size: 2rem;
+    font-weight: 900;
+    width: 100%;
 }
 
 .page-footer {
-    background: #C022F5;
+    background: #ffff;
 }
 
 .loading {
@@ -27,4 +34,37 @@ body {
 
 .selectD {
     width: 100px;
+}
+
+.input-navbar {
+    margin: 0 2%;
+    background: #fafafa;
+    width: 28rem;
+    border: none;
+    text-align: left;
+    justify-content: center;
+    padding: 4%;
+    border-radius: 18px;
+    height: 2rem;
+}
+
+.input-navbar:hover {
+    background: #ececec;
+}
+
+.input-navbar:focus {
+    outline: none;
+    border: 1px solid rgb(180, 165, 165);
+}
+
+.d-flex {
+    align-items: center;
+}
+
+.btn {
+    height: 36px;
+    width: 70px;
+    color: white;
+    background: #3040B7;
+    border-radius: 0.35rem;
 }

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import FormImages from "./FormImages";
 import PropTypes from "prop-types";
-import { InputContext } from "../contexts/InputContext";
+import { InputContext } from "../contexts/NavOptionsContext";
 
 const Navbar = () => {
   const { setInput } = useContext(InputContext);
@@ -15,14 +15,18 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav className="navbar navbar-expand-lg">
+      <nav className="navbar navbar-expand-lg ">
         <div className="container-fluid">
           <span className="navbar-brand mb-0 h1" href="#">
             Gallery App
           </span>
-        </div>
-        <div className="forndiv ">
-          <FormImages className="form-left" handleSubmit={handleSubmit} />
+
+          <FormImages
+            className="form-left input-navbar"
+            handleSubmit={handleSubmit}
+            placeholder="Search images"
+          />
+          <div className="selectD"></div>
         </div>
       </nav>
     </>
