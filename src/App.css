@@ -1,5 +1,5 @@
 :root {
-    --card_width: 300px;
+    --card_width: 200px;
     --card_small: 26;
     --card_medium: 33;
     --card_large: 45;
@@ -8,21 +8,15 @@
 
 body {
     background-color: #fafafa;
+    margin: 0;
 }
 
-.navbar {
-    padding: 15px 4%;
-    background: #ffffff;
-}
-
-.navbar-brand {
-    font-size: 2rem;
-    font-weight: 900;
-    width: 100%;
+footer {
+    box-shadow: -1px -6px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
 }
 
 .page-footer {
-    background: #ffff;
+    background: rgb(170, 16, 16);
 }
 
 .loading {
@@ -32,39 +26,25 @@ body {
     margin: 2%;
 }
 
-.selectD {
-    width: 100px;
+.css-tlfecz-indicatorContainer {
+    color: black !important;
 }
 
-.input-navbar {
-    margin: 0 2%;
-    background: #fafafa;
-    width: 28rem;
-    border: none;
-    text-align: left;
-    justify-content: center;
-    padding: 4%;
-    border-radius: 18px;
-    height: 2rem;
+.css-1gtu0rj-indicatorContainer {
+    color: black !important;
 }
 
-.input-navbar:hover {
-    background: #ececec;
+.css-yk16xz-control {
+    background: rgb(196 205 196) !important;
+    border-style: none !important;
 }
 
-.input-navbar:focus {
-    outline: none;
-    border: 1px solid rgb(180, 165, 165);
+.css-1pahdxg-control {
+    border-color: #f50057 !important;
+    box-shadow: 0 0 0 1px #f50057!important;
 }
 
-.d-flex {
-    align-items: center;
-}
-
-.btn {
-    height: 36px;
-    width: 70px;
-    color: white;
-    background: #3040B7;
-    border-radius: 0.35rem;
+.css-1pahdxg-control:hover {
+    box-shadow: rgb(240, 46, 46) !important;
+    border-color: rgb(231, 51, 51) !important;
 }

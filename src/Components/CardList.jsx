@@ -1,78 +1,110 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useFetchImages } from "../hooks/useFetchImages";
 import Card from "./Card";
-
 import Loading from "./Loading";
+import { makeStyles } from "@material-ui/core/styles";
+import { withWidth, Container, Typography, Box } from "@material-ui/core";
+import { resultSearchContext } from "../contexts/NavOptionsContext";
+import NotFaundPage from "./NotFaundPage";
 
-import Select from "react-select";
+const useStyle = makeStyles((theme) => ({
+  maindiv: {},
+  offset: theme.mixins.toolbar,
+  typography: {
+    margin: "auto",
+  },
+  notFoundGif: {
+    alignContent: "center",
+    width: "20%",
+  },
 
-const Cards = () => {
-  const [images, loading, selectChange] = useFetchImages();
+  containerDisplay: {
+    webkitColumnCount: 3,
+    mozColumnCount: 3,
+    columnCount: 5,
+    webkitColumnGap: "15px",
+    mozColumnGap: "15px",
+    columnGap: "0px",
+    [theme.breakpoints.down("md")]: {
+      columnCount: 4,
+    },
+    [theme.breakpoints.down("sm")]: {
+      columnCount: 3,
+    },
+    [theme.breakpoints.down("xs")]: {
+      columnCount: 2,
+    },
+  },
+  cardsItems: {
+    marginTop: "3%",
+    marginBottom: "15px",
+    border: "1px solid transparent",
+    borderRadius: "5px",
+    height: "fit-content",
+    gridColumn: "span 1",
+    margin: "1px 2px",
+  },
+}));
 
-  const tallImages = images.filter((images) => images.simpleAspect === "tall");
-  const wideImages = images.filter((images) => images.simpleAspect === "wide");
-  let tallIndex = 0;
-  let wideIndex = 0;
-  let imagesCombos = [];
+const Cards = (props) => {
+  const { searchResult } = useContext(resultSearchContext);
+  const classes = useStyle();
+  const [ruslts, setRuslts] = useState("");
+  const [images, loading] = useFetchImages();
+  console.log(typeof images);
+  console.log(images);
 
-  while (tallIndex < tallImages.length || wideIndex < wideImages.length) {
-    const tallSlice = tallImages.slice(tallIndex, tallIndex + 1);
-    const wideSlice = wideImages.slice(wideIndex, wideIndex + 2);
+  const changeResults = () => {
+    if (!images === null || images[0]) {
+      setRuslts(`Results of ${searchResult}...`);
+    } else {
+      setRuslts("");
+    }
+  };
 
-    imagesCombos = [...imagesCombos, [...tallSlice], [...wideSlice]];
-
-    tallIndex += tallSlice.length;
-    wideIndex += wideSlice.length;
-  }
-
-  imagesCombos = [...imagesCombos.filter((combo) => combo.length !== 0)];
-
-  // const options = [
-  //   { value: 10, label: "10" },
-  //   { value: 20, label: "20" },
-  //   { value: 120, label: "All images" },
-  // ];
-
-  // const customStyles = {
-  //   borderRadius: "4px",
-  //   colors: {
-  //     primary25: "#b8b1bb",
-  //     primary: "#C022F5",
-  //   },
-  // };
-
+  useEffect(() => {
+    changeResults();
+  }, [images]);
   return (
-    <div className="text-Center">
-      <div className="forndiv my-5 mx-5">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-6 col-sm-9 col-12"></div>
-            <div className="col-xl-6 col-sm-3 col-12">
-              {/* <div className="selectD">
-                <Select
-                  className="selectD"
-                  options={options}
-                  onChange={selectChange}
-                  theme={customStyles}
-                />
-              </div> */}
+    <div>
+      <div className={classes.maindiv}>
+        <div className="loading">{loading && <Loading />}</div>
+        <Typography variant="h6">size:{props.width}</Typography>
+        {searchResult ? (
+          <Box
+            display="flex"
+            width={500}
+            height={80}
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Typography
+              className={classes.typography}
+              variant="h4"
+              gutterBottom
+            >
+              {ruslts}
+            </Typography>
+          </Box>
+        ) : null}
+      </div>
+      {!images === null || images[0] ? (
+        <Container>
+          <div className={classes.containerDisplay}>
+            <div className={classes.cardsItems}>
+              {images.map((img) => (
+                <Card classname="imgCards" key={img.id} img={img.urls.small} />
+              ))}
             </div>
           </div>
+        </Container>
+      ) : (
+        <div>
+          <NotFaundPage />
         </div>
-      </div>
-      <div className="loading">{loading && <Loading />}</div>
-
-      <div className="container2">
-        {imagesCombos.map((combo, index) => (
-          <div className="image-container" key={index}>
-            {combo.map((img) => (
-              <Card key={img.id} img={img.urls.small} />
-            ))}
-          </div>
-        ))}
-      </div>
+      )}
     </div>
   );
 };
 
-export default Cards;
+export default withWidth()(Cards);

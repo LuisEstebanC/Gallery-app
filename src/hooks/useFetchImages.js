@@ -3,6 +3,7 @@ import { InputContext, SelectContext } from "../contexts/NavOptionsContext";
 export const useFetchImages = () => {
   const [images, setImages] = useState([]);
   const { input, setInput } = useContext(InputContext);
+  const { inputTitle, setInputTitle } = useContext(InputContext);
   const { perPage, setPerPage } = useContext(SelectContext);
 
   const [loading, setLoading] = useState(true);
@@ -63,5 +64,5 @@ export const useFetchImages = () => {
   //   setPerPage(number);
   // };
 
-  return [images, loading, setInput];
+  return [images, loading, setInput, inputTitle, setInputTitle];
 };
